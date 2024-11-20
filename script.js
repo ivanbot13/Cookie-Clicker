@@ -10,7 +10,7 @@ var currency = 0;
 
 function onClick(){
     currency++;
-    currencyCount.textContent = `Currency: ${currency}`;
+    currencyCount.innerHTML = `Currency: ${currency}`;
 }
 
 upgradeButton.addEventListener("click", upgrade1);
