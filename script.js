@@ -1,27 +1,44 @@
-var num = 0;
-var slavs = 0;
-var slavCost = 20;
-var slavCount = 0;
-var currency = document.getElementById("currency");
-const cookie = document.getElementById("cookie").addEventListener("click", clicker);
-const slavCountScreen = document.getElementById("slavCount");
-const slavCostScreen = document.getElementById("slavCost");
+const cookie = document.getElementById("cookie");
+const currencyCount = document.getElementById("currencyCount");
+const upgradeButton = document.getElementById("upgradeButton");
+const counter = document.getElementById("counter");
+const slavCount = document.getElementById("slavCount");
 
-function clicker(){ 
-    num ++;
-    currency.textContent = `cookiees: ${num}`;
-    currency.innerHTML = num;
+
+cookie.addEventListener("click", onClick);
+var currency = 0;
+
+function onClick(){
+    currency++;
+    currencyCount.textContent = `Currency: ${currency}`;
 }
 
-function buySlav(){
-    if (num >= slavCost){
-        slavCount += 1;
+upgradeButton.addEventListener("click", upgrade1);
+var slavCost = 10;
+var slavNum = 0;
+
+function upgrade1(){
+
+    if (currency >= slavCost){
+        currency -= slavCost;
+        slavCost *= 1.5;
+        slavCost = Math.floor(slavCost);
+        slavNum += 1
     }
+    else {
+        alert("ur too poor");
+    }
+    currencyCount.innerHTML = `Currency: ${currency}`;
+    counter.innerHTML = `Upgrade: Slav (Cost: ${slavCost})`;
+    slavCount.innerHTML = `Amount of workers: ${slavNum}`;
 }
 
-function autoUpgraders(){
-    num += slavCount;
-    slavCountScreen.innerHTML = num;
-    setTimeout(autoUpgraders, 1000);
+var idle = 0;
+function slavWork(){
+    idle = slavNum * 0.1;
+    currency += idle;
+    currency = Math.round(currency * 10) / 10;
+    currencyCount.innerHTML = `Currency: ${currency}`;
 }
-autoUpgraders
+
+setInterval(slavWork, 1000);
