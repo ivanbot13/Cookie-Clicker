@@ -1,0 +1,28 @@
+body {
+    background-color: aquamarine;
+    text-align: center;
+
+}
+
+#buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+.factoryImg {
+    width: 300px;
+    height: 200px;
+}
+
+.pointerImg {
+    width: 300px;
+    height: 200px;
+}
+
+.workerImg {
+    width: 300px;
+    height: 200px;
+}
+
